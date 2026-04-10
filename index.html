@@ -684,6 +684,23 @@
   </style>
 </head>
 <body>
+  <div id="visit-counter" style="
+    background: var(--soft);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  ">
+    累计访问：<strong id="visit-count">...</strong> 次
+  </div>
+  <script>
+    fetch('/api/counter')
+      .then(r => r.json())
+      .then(d => { document.getElementById('visit-count').textContent = d.visits.toLocaleString(); })
+      .catch(() => { document.getElementById('visit-count').textContent = '--'; });
+  </script>
   <div class="shell">
     <section id="intro" class="screen active">
       <div class="hero card hero-minimal">
